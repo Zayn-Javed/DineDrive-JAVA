@@ -1,0 +1,27 @@
+CREATE TABLE restaurant( `Restname`  varchar(20) PRIMARY KEY, `Address` varchar(40), `Category` varchar(40), `status` varchar(10) DEFAULT 'Active');
+
+CREATE TABLE `manager`(  `username` varchar(20)Primary key, `password`  varchar(20),  `RestName`  varchar(20));
+
+
+CREATE TABLE customer(`name`  varchar(20),`Address` varchar(40),`phoneNumber` varchar(40),`username` varchar(20) PRIMARY KEY,`password`  varchar(20),`status` varchar(10) DEFAULT 'Active');
+
+CREATE TABLE rider( `Name`  varchar(20),`Contact` varchar(40), `email` varchar(40),`username` varchar(20) PRIMARY KEY,`status` varchar(10) DEFAULT 'Active');
+
+CREATE TABLE `food_catalog`(`FoodName`  varchar(20) Primary Key,`Price` Double,`RestName` varchar(20));
+
+
+CREATE TABLE food_item(`FoodName`  varchar(20) Primary Key,  `Quantity` int,  `RestName` varchar(20), `status` varchar(10) DEFAULT 'Active');
+
+CREATE TABLE `food_description`(`descp` varchar(20), `Price` Double,`FoodName`  varchar(20));
+
+CREATE TABLE `feedback`(`feedback` varchar(40) , `rider`  varchar(20), `customer`  varchar(20));
+
+CREATE TABLE `reportcustomer`(`Reason` varchar(40),`rider`  varchar(20) ,`customer`  varchar(20));
+
+CREATE TABLE `order`(`orderId` varchar(20) PRIMARY KEY,`descp` varchar(40),`address` varchar(40),`RestName`  varchar(20), `rider`  varchar(20), `customer`  varchar(20));
+
+CREATE TABLE `orderdetails`(`orderId` varchar(20) ,`FoodName`  varchar(20), `Quantity`  int, `subAmount` Double);
+
+CREATE TABLE `Bill`(  `TotalAmount`  Double , `orderId` varchar(20));
+
+CREATE TABLE `payment`( `cardNumber` int,`GrandAmount`  Double , `orderId` varchar(20));

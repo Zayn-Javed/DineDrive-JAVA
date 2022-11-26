@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="448.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReportCustomerController">
+   <children>
+      <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" layoutX="-6.0" layoutY="2.0" opacity="0.89" prefHeight="403.0" prefWidth="699.0" text="Food On Wheels" textAlignment="CENTER" textFill="#1d3cb7">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="697.0">
+               <children>
+                  <Text layoutX="39.0" layoutY="51.0" opacity="0.39" strokeType="OUTSIDE" strokeWidth="0.0" text="Rider Panel" wrappingWidth="474.92578125">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="isNull" layoutX="184.0" layoutY="269.0" prefHeight="17.0" prefWidth="317.0" />
+                  <Button layoutX="82.0" layoutY="321.0" mnemonicParsing="false" onAction="#back" text="Back" />
+                  <Text fx:id="fd" layoutX="229.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason" wrappingWidth="203.984375" />
+                  <TextArea fx:id="feedback" layoutX="174.0" layoutY="174.0" prefHeight="69.0" prefWidth="329.0" />
+                  <Button layoutX="531.0" layoutY="321.0" mnemonicParsing="false" onAction="#report" text="Report" />
+                  <Button layoutX="414.0" layoutY="77.0" mnemonicParsing="false" onAction="#Confirm" text="confirm" />
+                  <ChoiceBox fx:id="myChoiceBox" layoutX="233.0" layoutY="77.0" prefWidth="150.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <HBox layoutY="398.0" prefHeight="50.0" prefWidth="693.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#toAdminLogin" prefHeight="55.0" prefWidth="262.0" text="Admin" />
+            <Button mnemonicParsing="false" onAction="#toRestaurentLogin" prefHeight="55.0" prefWidth="262.0" text="Restaurant" />
+            <Button mnemonicParsing="false" onAction="#toRiderLogin" prefHeight="55.0" prefWidth="262.0" text="Rider" />
+            <Button mnemonicParsing="false" onAction="#toSignUp" prefHeight="55.0" prefWidth="262.0" text="Customer" />
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" />
+   </children>
+</AnchorPane>

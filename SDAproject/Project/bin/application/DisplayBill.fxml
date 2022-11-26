@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DisplayBill">
+   <children>
+      <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" layoutX="3.0" layoutY="-10.0" opacity="0.89" prefHeight="461.0" prefWidth="684.0" text="Food On Wheels" textAlignment="CENTER" textFill="#1d3cb7">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="682.0">
+               <children>
+                  <Text layoutX="39.0" layoutY="51.0" opacity="0.39" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Panel" wrappingWidth="474.92578125">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="276.0" layoutY="75.0" opacity="0.39" strokeType="OUTSIDE" strokeWidth="0.0" text="Generated Bill" wrappingWidth="168.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="534.0" layoutY="348.0" mnemonicParsing="false" onAction="#proceed" text="Proceed to next" />
+                  <Text layoutX="468.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SubAmount" />
+                  <TextField fx:id="quant1" layoutX="438.0" layoutY="115.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="91.0" visible="false" />
+                  <TextField fx:id="quant2" layoutX="438.0" layoutY="142.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="91.0" visible="false" />
+                  <TextField fx:id="quant3" layoutX="438.0" layoutY="168.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="91.0" visible="false" />
+                  <TextField fx:id="quant4" layoutX="438.0" layoutY="195.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="91.0" visible="false" />
+                  <TextField fx:id="quant5" layoutX="438.0" layoutY="221.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="91.0" visible="false" />
+                  <TextField fx:id="quant6" layoutX="438.0" layoutY="247.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="91.0" visible="false" />
+                  <Text layoutX="354.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
+                  <TextField fx:id="price1" editable="false" layoutX="334.0" layoutY="118.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" visible="false" />
+                  <TextField fx:id="price2" editable="false" layoutX="334.0" layoutY="144.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" visible="false" />
+                  <TextField fx:id="price3" editable="false" layoutX="334.0" layoutY="169.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" visible="false" />
+                  <TextField fx:id="price4" editable="false" layoutX="334.0" layoutY="195.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" visible="false" />
+                  <TextField fx:id="price5" editable="false" layoutX="334.0" layoutY="223.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" visible="false" />
+                  <TextField fx:id="price6" editable="false" layoutX="334.0" layoutY="249.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" visible="false" />
+                  <Text layoutX="180.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food Name" />
+                  <Separator layoutX="163.0" layoutY="291.0" prefHeight="0.0" prefWidth="374.0" />
+                  <TextField fx:id="check1" editable="false" layoutX="171.0" layoutY="117.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="112.0" visible="false" />
+                  <TextField fx:id="check2" editable="false" layoutX="171.0" layoutY="144.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="112.0" visible="false" />
+                  <TextField fx:id="check3" editable="false" layoutX="171.0" layoutY="170.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="112.0" visible="false" />
+                  <TextField fx:id="check4" editable="false" layoutX="171.0" layoutY="195.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="112.0" visible="false" />
+                  <TextField fx:id="check5" editable="false" layoutX="171.0" layoutY="223.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="112.0" visible="false" />
+                  <TextField fx:id="check6" editable="false" layoutX="171.0" layoutY="249.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="112.0" visible="false" />
+                  <Text layoutX="63.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" />
+                  <TextField fx:id="total" editable="false" layoutX="458.0" layoutY="297.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" />
+                  <Text layoutX="63.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gst (17%)" />
+                  <TextField fx:id="gst" editable="false" layoutX="458.0" layoutY="316.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" />
+                  <TextField fx:id="grandTotal" editable="false" layoutX="458.0" layoutY="339.0" minHeight="-Infinity" prefHeight="17.0" prefWidth="51.0" />
+                  <Text layoutX="63.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amout to Pay" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <HBox layoutX="-26.0" layoutY="395.0" prefHeight="52.0" prefWidth="709.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#toAdminLogin" prefHeight="52.0" prefWidth="273.0" text="Admin" />
+            <Button mnemonicParsing="false" onAction="#toRestaurentLogin" prefHeight="52.0" prefWidth="273.0" text="Restaurant" />
+            <Button mnemonicParsing="false" onAction="#toRiderLogin" prefHeight="52.0" prefWidth="273.0" text="Rider" />
+            <Button mnemonicParsing="false" onAction="#toSignUp" prefHeight="52.0" prefWidth="273.0" text="Customer" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

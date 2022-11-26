@@ -1,0 +1,194 @@
+package application;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+public class CustomerPanel {
+
+	private FoodOnWheels controller;
+	public FoodOnWheels getController() {
+		return controller;
+	}
+	public void setController(FoodOnWheels controller) {
+		this.controller = controller;
+	}
+	
+	@FXML
+	private Button goBtn;
+	
+	 public URL location;
+	 //=new URL("D:\\SDA Spring 2022\\eclipseWorkplaceForSDA\\DemoApp\\src\\application\\SampleUI.fxml");
+     
+	 @FXML
+	 public ResourceBundle resources;
+
+	// Add a public no-args constructor
+	 public void BOXUIController()
+	 {
+	 }
+	 @FXML
+	 public void initialize()
+	 {
+	 }
+	 
+	 public void toSignUp(ActionEvent event) throws IOException {
+		 	
+		 FXMLLoader loader = new FXMLLoader();
+			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+			String fxmlDocPath = "src/application/CustomerSignUp.fxml";
+			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+			CustomerSignUpController obj= loader.getController();
+			obj.setController(controller);
+			Scene scene = new Scene(pane,600,600);
+			currentStage.setScene(scene);
+			currentStage.show();
+			
+			 
+	}
+	 public void toAdminLogin(ActionEvent event) throws IOException {
+		 
+		 FXMLLoader loader = new FXMLLoader();
+		Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+		String fxmlDocPath = "src/application/adminLogin.fxml";
+		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+		AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+		adminLoginController obj= loader.getController();
+		obj.setController(controller);
+		Scene scene = new Scene(pane,600,600);
+		currentStage.setScene(scene);
+		currentStage.show();
+		
+		
+		 
+	 }
+	 public void toRestaurentLogin(ActionEvent event) throws IOException {
+		 	
+		 FXMLLoader loader = new FXMLLoader();
+			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+			String fxmlDocPath = "src/application/ManagerLogin.fxml";
+			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+			ManagerLoginController obj= loader.getController();
+			obj.setController(controller);
+			Scene scene = new Scene(pane,600,600);
+			currentStage.setScene(scene);
+			currentStage.show();
+			
+			 
+	}
+	 public void toRiderLogin(ActionEvent event) throws IOException {
+		 
+		 FXMLLoader loader = new FXMLLoader();
+		Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+		String fxmlDocPath = "src/application/riderLogin.fxml";
+		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+		AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+		RiderLoginController obj= loader.getController();
+		obj.setController(controller);
+		Scene scene = new Scene(pane,600,600);
+		currentStage.setScene(scene);
+		currentStage.show();
+		
+		
+		 
+	 }
+	 
+	 public void showRest(ActionEvent event) throws IOException {
+		 	
+		 FXMLLoader loader = new FXMLLoader();
+			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+			String fxmlDocPath = "src/application/ShowRestaurants.fxml";
+			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+			showRestautrantController obj= loader.getController();
+			obj.setController(controller);
+			Scene scene = new Scene(pane,600,600);
+			currentStage.setScene(scene);
+			currentStage.show();
+			
+			 
+	}
+	 
+	 
+	 public void feedback(ActionEvent event) throws IOException {
+		 	
+		  FXMLLoader loader = new FXMLLoader();
+			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+			String fxmlDocPath = "src/application/feedback.fxml";
+			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+			feedbackController obj= loader.getController();
+			obj.setController(controller);
+			Scene scene = new Scene(pane,600,600);
+			currentStage.setScene(scene);
+			currentStage.show();
+			obj.show(event);
+			
+			 
+	}
+	
+	
+	
+	 public void back(ActionEvent event) throws IOException {
+		 	
+		 FXMLLoader loader = new FXMLLoader();
+			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+			String fxmlDocPath = "src/application/CustomerLogin.fxml";
+			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+			CustomerLoginController obj= loader.getController();
+			obj.setController(controller);
+			Scene scene = new Scene(pane,600,600);
+			currentStage.setScene(scene);                                      
+			currentStage.show();
+			
+			 
+	}
+	 
+	
+	 
+	 public void ChangeInfo(ActionEvent event) throws IOException {
+		 	
+//		 	FXMLLoader loader = new FXMLLoader();
+//			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+//			String fxmlDocPath = "src/application/ChangeCustomerInfo.fxml";
+//			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+//			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+//			ChangeCustomerInfoController obj= loader.getController();
+//			obj.setController(controller);
+//			Scene scene = new Scene(pane,710,468);
+//			currentStage.setScene(scene);                                      
+//			currentStage.show();
+		 
+		 
+		 FXMLLoader loader = new FXMLLoader();
+			Stage currentStage=(Stage)((Node)event.getSource()).getScene().getWindow();
+			String fxmlDocPath = "src/application/CustomerLogin.fxml";
+			FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+			AnchorPane pane = (AnchorPane) loader.load(fxmlStream);
+			CustomerLoginController obj= loader.getController();
+			obj.setController(controller);
+			Scene scene = new Scene(pane,600,600);
+			currentStage.setScene(scene);                                      
+			currentStage.show();
+		 
+			
+			 
+	}
+	 
+	 
+	
+	
+}

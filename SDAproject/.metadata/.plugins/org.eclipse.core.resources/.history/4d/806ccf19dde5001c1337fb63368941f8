@@ -1,0 +1,384 @@
+package application;
+
+import java.util.ArrayList;
+
+public class FoodOnWheels {
+	private Admin admin= new Admin();
+	private Rider rider= new Rider();
+	private RestaurantRegister restRegister= new RestaurantRegister();
+	private RiderRegister ridRegister= new RiderRegister();
+	private OrderRegister ordRegister= new OrderRegister();
+	private CustomerRegister custRegister = new CustomerRegister();
+
+   private String logedin;
+   private String riderlogedin;
+    String custlogedin;
+    Restaurant SelectedRestaurant;
+	
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public boolean checkCredentialsAdmin(String userName, String password) {
+		boolean flag= false;
+		if(userName.equals(admin.getUserName()) && password.equals(admin.getPassword())) {
+	
+			flag= true;
+		}
+		return flag;
+	}
+	
+	public boolean checkCredentialsCustomer(String userName, String password) {
+		Boolean flag=custRegister.checkCredentialsCustomer(userName, password);
+		if(flag==true) {
+			this.custlogedin=userName;
+		}
+		return flag;
+	}
+	
+	
+	public boolean addRestaurant(String username, String password, String name, String address, String catagory) {
+		boolean flag= this.restRegister.validateRestaurent(username, name);
+		if(flag) {
+			restRegister.addRestaurant(username, password, name, address, catagory);
+		}
+		return flag;
+	}
+	
+	public ArrayList<Restaurant> showRestaurant() {
+		ArrayList<Restaurant> list= this.restRegister.getActiveResaurantList();
+		return list;
+	}
+	
+	 public boolean removeRestaurant(String name) {
+		 boolean flag= true;
+		Restaurant restaurant= this.restRegister.remveRestaurat(name);
+		this.restRegister.inActiveRestaurant(restaurant);
+		return flag;
+	 }
+	 
+	 public boolean checkCredentialsManager(String userName, String password) {
+		 boolean flag= false;
+		 for(int i=0; i<this.restRegister.getActiveResaurantList().size(); i++) {
+			 if(userName.equals(this.restRegister.getActiveResaurantList().get(i).getManager().getUserName()) && password.equals(this.restRegister.getActiveResaurantList().get(i).getManager().getPassword())) {
+				 this.logedin= userName;
+				 flag= true;
+				 break;
+			 }
+		 }
+		 return flag;
+	 }
+	 
+	 public Restaurant searchRestaurantOfManager() {
+		 ArrayList<Restaurant> list= this.restRegister.getActiveResaurantList();
+		 Restaurant restaurant= null;
+		 for(int i=0; i<list.size(); i++) {
+			 if(this.logedin.endsWith(list.get(i).getManager().getUserName())) {
+				 restaurant= list.get(i);
+				 break;
+			 }
+		 }
+		 return restaurant;
+	 }
+	 
+	 public boolean validateFoodName(Restaurant restaurant, String name) {
+		 boolean flag= true;
+		 for(int i=0; i<restaurant.getFoodCatalog().getFdeslist().size(); i++) {
+			 if(name.equals(restaurant.getFoodCatalog().getFdeslist().get(i).getName())) {
+				 flag= false;
+				 break;
+			 }
+		 }
+		 return flag;
+	 }
+	 
+	 public boolean addFood(String name, double price, int quantity, String detaileddes) {
+		 Restaurant restaurant= searchRestaurantOfManager();
+		 boolean flag= validateFoodName(restaurant, name);
+		 if(flag) {
+			 restaurant.addFood(name, price, quantity, detaileddes);
+		 }
+		 return flag;
+		 
+	 }
+	 
+	 public void RemoveFood(String name) {
+		 Restaurant restaurant= searchRestaurantOfManager();
+		 restaurant.removeFood(name);
+	 }
+	 
+	 public void updateFood(String name, double price, int quantity, String detaileddes) {
+		 Restaurant restaurant= searchRestaurantOfManager();
+		 restaurant.updateFood(name, price, quantity, detaileddes);
+	 }
+	 
+	 public ArrayList<String> showMenu(){
+		 Restaurant restaurant= searchRestaurantOfManager();
+		 ArrayList<String> menu= restaurant.getFoodCatalog().getMenu();
+		 return menu;
+	 }
+	 
+	 
+	 public ArrayList<Food> showfoodList(Restaurant restaurant){
+		
+		 ArrayList<Food> menu= restaurant.getFoodList();
+		 return menu;
+	 }
+
+	 
+	 public boolean AddRider( String username, String email, String contact, String name ) {
+			boolean flag= this.ridRegister.validateRider(username, email,contact);
+			if(flag) {
+				ridRegister.addRider(username, email, contact, name );
+			}
+			return flag;
+		}
+		
+		public ArrayList<Rider> DisplayRiders() {
+			ArrayList<Rider> list= this.ridRegister.getActiveRiderList();
+			return list;
+		}
+		
+		 public boolean RemoveRiders(String username) {
+			boolean flag= true;
+			Rider rider= this.ridRegister.removeRider(username);
+			this.ridRegister.inActiveRider(rider);
+			this.ridRegister.removefromActive(rider);
+			return flag;
+		 }
+		 
+		 public Restaurant SelectRestaurant(String name) {
+			 return SelectedRestaurant = restRegister.searchRestaurant(name);
+	 }
+	  public Boolean PlaceOrder(String userName,String address,String desc,ArrayList<String> foodName,ArrayList<Integer> quantity,ArrayList<Double> price) {
+	
+		  boolean flag=true;
+		 Customer customer= custRegister.getCustomer(userName);
+		  if( restRegister.VerifyOrder(SelectedRestaurant,foodName,quantity)==true) {
+			  flag=true;
+			 ordRegister.CreateOrder(customer,address,desc,foodName,quantity,price);
+			  
+		 }
+		  else
+			  flag=false;
+       
+		 return flag;
+		 
+	 }
+	 public Bill displayBill() {
+		 Bill bill=ordRegister.displayBill();
+		 return bill;
+	 }
+	 
+	 
+		// ----------methods to pick order------------
+		 
+			 public ArrayList<Order> DisplayOrders() {
+					ArrayList<Order> list= this.ordRegister.getActiveOrderList();
+					
+					return list;
+				} 
+			 
+			 public ArrayList<Order> DisplayPicked() {
+				   Rider Trider= searchRider();
+					
+				   ArrayList<Order> list = Trider.getPickedOrder();
+				   return list;
+				} 
+			 
+			 public boolean checkCredentialsRider(String userName, String password) {
+				 boolean flag= false;
+				 for(int i=0; i<this.ridRegister.getActiveRiderList().size(); i++) {
+					 if(userName.equals(this.ridRegister.getActiveRiderList().get(i).getUsername()) && password.equals(this.ridRegister.getActiveRiderList().get(i).getEmail())) {
+						 this.riderlogedin= userName;
+						 flag= true;
+						 break;
+					 }
+				 }
+				 return flag;
+			 }
+			 
+			 
+			 public Rider searchRider() {
+				 ArrayList<Rider> list= this.ridRegister.getActiveRiderList();
+				 Rider rider= null;
+				 for(int i=0; i<list.size(); i++) {
+					 if(this.riderlogedin.endsWith(list.get(i).getUsername())) {
+						 rider= list.get(i);
+						 break;
+					 }
+				 }
+				 return rider;
+			 }
+			 
+			 public Order searchOrder(int id) {
+				 ArrayList<Order> list= this.ordRegister.getActiveOrderList();
+				 Order order= null;
+				 for(int i=0; i<list.size(); i++) {
+					 if(list.get(i).getOrderid() == id ) {
+						 order= list.get(i);
+						 break;
+					 }
+				 }
+				 return order;
+			 }
+			 
+			 	//------------select------------------
+			 
+			 public boolean selectorder( int id ) {
+				 Rider rider= searchRider();
+				 Order order= searchOrder( id );
+				 boolean flag=false;
+				 if( order !=null ) {
+					 rider.addOrder(order);
+					 flag=true;
+					 
+					 //this.ordRegister.inActiveOrder(order);
+					 //this.ordRegister.removeFromActive(order);
+				 }
+				 return flag;
+				 
+			 }
+
+	            	//------------deliver------------------
+			 
+			 public boolean Deliver( int id ) {
+				 Rider rider= searchRider();
+				 Order order= searchOrder(id);
+				Customer cust= custRegister.getMyCustomer( order);
+				rider.getMyCustomers().add(cust);
+				cust.getRiderList().add(rider);
+				 boolean flag=false;
+				 if( order !=null && order.getStatus().equalsIgnoreCase("picked") ) {
+					 rider.adddeliveredOrder(order, this.ordRegister);
+					 flag=true;
+					 
+					 //this.ordRegister.inActiveOrder(order);
+					 //this.ordRegister.removeFromActive(order);
+				 }
+				 return flag;
+				 
+			 }
+			 
+			 
+	public ArrayList<String> getPaymentMethod(){
+		ArrayList<String> method= ordRegister.getPaymentMethod();
+		return method;
+	}
+			 
+		 
+		 public boolean Payment(int card_number) {
+			 boolean flag;
+			   
+			 flag=ordRegister.makePayment(card_number);
+			 if(flag==true) {
+			    	Order order= ordRegister.getInActiveOrderList().remove(ordRegister.getInActiveOrderList().size()-1);
+			    	 ordRegister.getActiveOrderList().add(order);
+                        SelectedRestaurant.getActiveOrderList().add(order);
+                       custRegister.getCustomer(custRegister.getLogedin()).getCustomer_orders().add(order);
+                       
+			     }
+				return flag;
+			 
+		 }
+		 
+		 public boolean Payment() {
+			 boolean flag;
+			   
+			 flag=ordRegister.makePayment();
+			 if(flag==true) {
+			    	Order order= ordRegister.getInActiveOrderList().remove(ordRegister.getInActiveOrderList().size()-1);
+			    	 ordRegister.getActiveOrderList().add(order);
+                        SelectedRestaurant.getActiveOrderList().add(order);
+                       custRegister.getCustomer(custRegister.getLogedin()).getCustomer_orders().add(order);
+                       
+			     }
+				return flag;
+			 
+		 }
+	
+		 public ArrayList<Customer> showCustomers(){
+			 ArrayList<Customer> customers = custRegister.getCustomers();
+			 
+			return customers;
+			 	 
+		 }
+		public void selectCustomers(String custName) {
+			custRegister.blockcustomer(custName);
+				
+		}
+
+		public boolean AddCustomer(String name, String address, String phoneNo, String username, String password) {
+			if(custRegister.AddCustomer(name,address,phoneNo,username,password)==true) {
+				return true;
+			}
+			return false;
+		}
+		
+		
+	  public ArrayList<Rider> showRiders(){
+		  
+		  ArrayList<Rider> riderList = custRegister.showRider();
+		return riderList;
+		  
+	  }
+	  
+	  public void giveFeedback(String Feedback, String rideruserName) {
+		  
+		  custRegister.saveFeedback(Feedback);
+		 Rider rider = ridRegister.searchRider(rideruserName);
+		  ridRegister.saveFeedback(Feedback,rider);
+	  }
+	  
+	  public ArrayList<Customer> showMyCustomer(){
+		  
+		  ArrayList<Customer> custList = ridRegister.showMyCustomer(riderlogedin);
+		  
+		  return custList;
+	  }
+	
+	  public void reportCustomer(String username,String reason) {
+
+		 custRegister.reportCustomer(username,reason);
+		 Customer customer = custRegister.getCustomer(username);
+		 Rider rider = ridRegister.searchRider(riderlogedin);
+		rider.getMyCustomers().remove(customer);
+	  }
+	  
+	  public  ArrayList<Customer> getBlockRequests() {  
+		  	  
+		 return custRegister.getReportedCustomers();
+	  }
+	  
+	  public ArrayList<String> getreportReasons(){
+		  
+		  return custRegister.getReasons();
+	  }
+	  
+	  public void blockReportedCustomer(String username) {
+		  
+		 custRegister.blockReportedcustomer(username);
+		 
+	  }
+	  
+	  public ArrayList<String> showFeedback() {
+		  Rider rider  = ridRegister.searchRider(riderlogedin);
+		 ArrayList<String> feedback= rider.getFeedback();
+		 return feedback;
+	  }
+	  
+	  
+	  public boolean updateprofile( String name, String address, String phoneNo, String username, String password) {
+		  if(custRegister.updateProfileInfo(name,address,phoneNo,username,password,custlogedin)==true) {
+				return true;
+		  }
+		  
+		  return false;
+	  }
+	  
+	  
+}	  

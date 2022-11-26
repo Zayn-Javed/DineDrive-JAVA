@@ -1,0 +1,165 @@
+package application;
+
+import java.util.ArrayList;
+
+public class CustomerRegister {
+    private String logedin;
+	private ArrayList<Customer> customers = new ArrayList<Customer>();
+	private ArrayList<Customer> BlockedCustomers = new ArrayList<Customer>();
+    private ArrayList<Customer> reportedCustomers = new ArrayList<Customer>();
+    private ArrayList<String>   reasons  = new ArrayList<String>();
+    
+    public ArrayList<Customer> getBlockedCustomers() {
+		return BlockedCustomers;
+	}
+
+	public void setBlockedCustomers(ArrayList<Customer> blockedCustomers) {
+		BlockedCustomers = blockedCustomers;
+	}
+
+	public ArrayList<Customer> getReportedCustomers() {
+		return reportedCustomers;
+	}
+
+	public void setReportedCustomers(ArrayList<Customer> reportedCustomers) {
+		this.reportedCustomers = reportedCustomers;
+	}
+
+	public ArrayList<String> getReasons() {
+		return reasons;
+	}
+
+	public void setReasons(ArrayList<String> reasons) {
+		this.reasons = reasons;
+	}
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
+
+	public String getLogedin() {
+		return logedin;
+	}
+
+	public void setLogedin(String logedin) {
+		this.logedin = logedin;
+	}
+
+	public void setCustomers(ArrayList<Customer> customers) {
+		this.customers = customers;
+	}
+	
+	public Customer getCustomer(String userName) {
+		Customer customer=null;
+		for(int i=0;i<customers.size();i++)
+		if(userName.equals(customers.get(i).getUserName())) {
+			customer=customers.get(i);
+			break;
+		}
+		
+		return customer;	
+	}
+	
+	public boolean checkCredentialsCustomer(String userName, String password) {
+		boolean flag= false;
+		for(int i=0;i<customers.size();i++) {
+		if(userName.equals(customers.get(i).getUserName()) && password.equals(customers.get(i).getPassWord())) {
+			this.setLogedin(userName);
+			flag= true;
+		break;
+		 }
+		}
+		return flag;
+	}
+
+	public void blockcustomer(String custName) {
+		
+			  for(int j=0;j<customers.size();j++) {
+				 
+				  if(custName.equals(customers.get(j).getName())) {
+					  Customer customer1=customers.remove(j);
+					  BlockedCustomers.add(customer1);
+				
+				  }
+			  }
+		
+	}
+
+	public boolean AddCustomer(String name, String address, String phoneNo, String username, String password) {
+	for(int i=0;i<customers.size();i++) {
+		if(username.equals(customers.get(i).getUserName()) || phoneNo.equals(customers.get(i).getPhoneNumber())) {
+			return false;
+		}	
+	}
+	Customer customer = new Customer(name, address, phoneNo, username, password);
+	customers.add(customer);
+		return true;
+	}
+
+	public ArrayList<Rider> showRider() {
+		Customer cust = null;
+		for(int i=0;i<customers.size();i++) {
+			if(logedin.equals(customers.get(i).getUserName())) {
+				 cust=customers.get(i);
+			}
+		}
+		ArrayList<Rider> riderList = cust.getRiderList();
+		return riderList;
+	}
+
+	public void saveFeedback(String feedback) {
+		Customer cust = getCustomer(logedin);
+		cust.getFeedback().add(feedback);
+		
+	}
+
+	public Customer getMyCustomer(Order order) {
+		Customer cust = null;
+		for(int i=0;i<customers.size();i++) {
+			    for(int j=0;j<customers.get(i).getCustomer_orders().size();j++) {
+			    	if(order.equals(customers.get(i).getCustomer_orders().get(j))){
+			    		cust = customers.get(i);
+			    		return cust;
+			    	}
+			}
+		}
+		return null;
+	}
+
+	public void reportCustomer(String username, String reason) {
+		Customer cust = getCustomer(username);
+		reportedCustomers.add(cust);
+		reasons.add(reason);
+	}
+
+	public void blockReportedcustomer(String username) {
+		 Customer customer1=null;
+		  for(int j=0;j<customers.size();j++) {
+			 
+			  if(username.equals(customers.get(j).getUserName())) {
+				  customer1= customers.remove(j);
+				 reportedCustomers.remove(customer1);                    
+				  BlockedCustomers.add(customer1);
+			
+			  }
+		  }
+		
+	}
+	
+	
+	public boolean updateProfileInfo(String name, String address, String phoneNo, String username, String password, Sting custlogedin ) {
+		for(int i=0;i<customers.size();i++) {
+			if(username.equals(customers.get(i).getUserName()) && phoneNo.equals(customers.get(i).getPhoneNumber()) && password.equals(customers.get(i).getPassWord())) {
+				
+				Customer customer = new Customer(name, address, phoneNo, username, password);
+				customers.set(i, customer);
+				
+				return true;
+			}
+		}
+	
+		return false;
+		
+	}
+
+	
+}

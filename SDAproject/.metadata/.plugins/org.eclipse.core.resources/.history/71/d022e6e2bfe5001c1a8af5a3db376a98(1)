@@ -1,0 +1,120 @@
+package application;
+
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class ChangeCustomerInfoController {
+
+	
+	private FoodOnWheels controller;
+	public FoodOnWheels getController() {
+		return controller;
+	}
+	public void setController(FoodOnWheels controller) {
+		this.controller = controller;
+	}
+	
+	//text fields
+	
+	@FXML
+	private TextField name;
+	@FXML
+	private TextField username;
+	@FXML
+	private TextField Address;
+	@FXML
+	private PasswordField password;
+	@FXML
+	private TextField phoneNo;
+	
+	//labels
+	
+	@FXML
+	private Label nameLabel;
+	@FXML
+	private Label phoneNolabel;
+	@FXML
+	private Label usernameLabel;
+	@FXML
+	private Label passwordlabel ;
+	
+	@FXML
+	private Label errorLabel;
+	
+	
+	@FXML
+	public void updateinfo(ActionEvent event) throws IOException {
+	 boolean isValid= true;
+	 String name= this.name.getText();
+	 String Address= this.Address.getText();
+	 String phoneNo= this.phoneNo.getText();
+	 String username= this.username.getText();
+	 String password = this.password.getText();
+	 
+	 if(!(name.equals("") || username.equals("") || phoneNo.equals("") || password.equals("") || Address.equals(""))) {
+		 if(name.contains("0")||name.contains("1")||name.contains("2")||name.contains("3")||name.contains("4")||name.contains("5")||name.contains("6")||name.contains("7")||name.contains("8")||name.contains("9")) {
+				this.nameLabel.setText("Name should not contain any number");
+				isValid= false;
+		 }
+		 int phone=0;
+		 if(phoneNo.contains(" ")) {
+			 this.phoneNolabel.setText("Phone Number should not contain any spaces");
+		 	isValid= false;
+		 }
+		 else {
+			 try {
+				  phone= Integer.parseInt(phoneNo);
+			 }
+		 	 catch(NumberFormatException e) {
+		 		 phoneNolabel.setText("Phone Number should not contain any alphabet");
+		 		 isValid= false;
+		 	 }
+			 
+		 }
+		 
+		 if(username.contains(" ")) {
+				this.usernameLabel.setText("Username should not contain any spaces");
+				isValid= false;
+		 }
+		 if(password.length()<5) {
+			 	passwordlabel.setText("Password should contain more than 4 words");
+				isValid= false;
+		 }
+		 
+		 
+		 
+		 // for valid case
+		 
+		 if(isValid) {
+
+			 boolean flag= this.controller.updateprofile(name,Address,phoneNo,username,password, custlogedin );
+			 if(flag) {
+				 
+				 this.errorLabel.setText("You have been Registered successfully");
+				 Login(event);
+				 
+			 }
+			 else {
+				 this.errorLabel.setText("Sorry!Username or phone Number is already taken");
+			 }
+			 
+			}
+	 }
+	 else {
+		 this.errorLabel.setText("Field should not be empty");
+		
+	 }
+
+   }
+	
+	
+	
+	
+	
+	
+}

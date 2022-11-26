@@ -1,0 +1,34 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class ChangeCustomerInfoController {
+
+	
+	private FoodOnWheels controller;
+	public FoodOnWheels getController() {
+		return controller;
+	}
+	public void setController(FoodOnWheels controller) {
+		this.controller = controller;
+	}
+	
+	//text fields
+	
+	@FXML
+	private TextField name;
+	@FXML
+	private TextField username;
+	@FXML
+	private TextField Address;
+	@FXML
+	private PasswordField password;
+	@FXML
+	private TextField phoneNo;
+	
+	
+	
+	
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DeleteRiderController" >
+   <children>
+            <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" layoutX="-26.0" layoutY="-22.0" opacity="0.89" prefHeight="417.0" prefWidth="709.0" text="Food On Wheels" textAlignment="CENTER" textFill="#1d3cb7">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="391.0" prefWidth="708.0">
+                     <children>
+                        <TextField fx:id="riderusername" layoutX="240.0" layoutY="294.0" prefHeight="25.0" prefWidth="86.0" />
+                        <Text layoutX="152.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+                        <Text layoutX="39.0" layoutY="51.0" opacity="0.39" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Panel" wrappingWidth="474.92578125">
+                           <font>
+                              <Font size="34.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="314.0" layoutY="61.0" opacity="0.39" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Rider" wrappingWidth="127.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="81.0" layoutY="339.0" mnemonicParsing="false" onAction="#back" text="Back" />
+                        <Button fx:id="Delete" layoutX="560.0" layoutY="339.0" mnemonicParsing="false" onAction="#RemoveRider" text="Delete Rider" />
+                        <Label fx:id="errorLabel" layoutX="268.0" layoutY="334.0" prefHeight="17.0" prefWidth="187.0" />
+                        <Label fx:id="usernameLabel" layoutX="366.0" layoutY="298.0" prefHeight="17.0" prefWidth="178.0" />
+                  <TextArea fx:id="Displayriderarea" editable="false" layoutX="254.0" layoutY="85.0" prefHeight="169.0" prefWidth="208.0" />
+                  <Button fx:id="Display" layoutX="313.0" layoutY="261.0" mnemonicParsing="false" onAction="#DisplayRider" text="Display Riders" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <HBox layoutX="-26.0" layoutY="395.0" prefHeight="52.0" prefWidth="709.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="273.0" text="Admin" />
+                  <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="273.0" text="Restaurant" />
+                  <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="273.0" text="Rider" />
+                  <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="273.0" text="Customer" />
+               </children>
+            </HBox>
+        
+   </children>
+</AnchorPane>
